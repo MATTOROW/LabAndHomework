@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String path = "C:\\Users\\Никита\\Documents\\IT\\JavaLessons\\MavenProjects\\Addition\\text.txt";
+        String path = "C:\\Users\\Никита\\Documents\\IT\\JavaLessons\\MavenProjects\\Addition\\transport.json";
         String result =  new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
         System.out.println(checker(result));
     }
