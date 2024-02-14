@@ -6,4 +6,6 @@ public interface StorageCapable {
     Integer pop();
     Integer get(int index) throws IndexOutOfBoundsException;
     int size();
+    void deleteAll(Integer e);
+    int findFirst(Integer e);
 }

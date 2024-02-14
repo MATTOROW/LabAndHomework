@@ -10,7 +10,13 @@ public class List implements StorageCapable {
 
     public List(int size) {
         massive = new Integer[size];
-        capacity = size;
+        capacity = size + 10;
+    }
+
+    public List(Integer[] massive) {
+        this.massive = massive;
+        size = massive.length;
+        capacity = massive.length * 2;
     }
 
     public void add(Integer e) throws EmptyElementException {
@@ -34,7 +40,6 @@ public class List implements StorageCapable {
         for (int i = index; i < size - 1; ++i) {
             massive[i] = massive[i + 1];
         }
-        massive[size - 1] = 0;
         size--;
     }
 
@@ -51,6 +56,25 @@ public class List implements StorageCapable {
             throw new IndexOutOfBoundsException();
         }
         return massive[index];
+    }
+
+    public int findFirst(Integer e) {
+        int tmpInd = -1;
+        for (int i = 0; i < size; ++i) {
+            if (massive[i].equals(e)) {
+                return i;
+            }
+        }
+        return tmpInd;
+    }
+
+    public void deleteAll(Integer e) {
+        for (int i = 0; i < size; ++i) {
+            if (massive[i].equals(e)) {
+                this.delete(i);
+                i--;
+            }
+        }
     }
 
     public int size() {

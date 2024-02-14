@@ -1,4 +1,4 @@
-package ru.itis.lab2_1_list;
+package org.example;
 
 public class LinkedList implements StorageCapable {
     private Node head;
@@ -8,16 +8,13 @@ public class LinkedList implements StorageCapable {
     public LinkedList() {
     }
 
-    public LinkedList(Integer[] massive) throws EmptyElementException {
+    public LinkedList(char[] massive) {
         for (int i = 0; i < massive.length; ++i) {
             this.add(massive[i]);
         }
     }
 
-    public void add(Integer e) throws EmptyElementException {
-        if (e == null) {
-            throw new EmptyElementException();
-        }
+    public void add(char e) {
         if (size == 0) {
             head = new Node(e);
             tail = head;
@@ -49,18 +46,15 @@ public class LinkedList implements StorageCapable {
         size--;
     }
 
-    public Integer pop() {
-        if (size == 0) {
-            return null;
-        }
-        tail.getPrev().setNext(null);
-        Integer tmp = tail.getValue();
+    public char pop() {
+        if (tail.getPrev() != null) tail.getPrev().setNext(null);
+        char tmp = tail.getValue();
         tail = tail.getPrev();
         size--;
         return tmp;
     }
 
-    public Integer get(int index) throws IndexOutOfBoundsException {
+    public char get(int index) throws IndexOutOfBoundsException {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
@@ -71,11 +65,11 @@ public class LinkedList implements StorageCapable {
         return tmp.getValue();
     }
 
-    public int findFirst(Integer e) {
+    public int findFirst(char e) {
         int tmpInd = -1;
         Node tmp = head;
         for (int i = 0; i < size; ++i) {
-            if (tmp.getValue().equals(e)) {
+            if (tmp.getValue() == e) {
                 return i;
             }
             tmp = tmp.getNext();
@@ -83,9 +77,9 @@ public class LinkedList implements StorageCapable {
         return tmpInd;
     }
 
-    public void deleteAll(Integer e) {
+    public void deleteAll(char e) {
         for (int i = 0; i < size; ++i) {
-            if (this.get(i).equals(e)) {
+            if (this.get(i) == e) {
                 this.delete(i);
                 i--;
             }
