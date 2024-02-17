@@ -1,28 +1,28 @@
 package ru.itis.lab2_1_list;
 
-public class LinkedList implements StorageCapable {
-    private Node head;
-    private Node tail;
+public class LinkedList<T> implements StorageCapable<T> {
+    private Node<T> head;
+    private Node<T> tail;
     private int size = 0;
 
     public LinkedList() {
     }
 
-    public LinkedList(Integer[] massive) throws EmptyElementException {
+    public LinkedList(T[] massive) throws EmptyElementException {
         for (int i = 0; i < massive.length; ++i) {
             this.add(massive[i]);
         }
     }
 
-    public void add(Integer e) throws EmptyElementException {
+    public void add(T e) throws EmptyElementException {
         if (e == null) {
             throw new EmptyElementException();
         }
         if (size == 0) {
-            head = new Node(e);
+            head = new Node<T>(e);
             tail = head;
         } else {
-            Node tmp = new Node(e);
+            Node<T> tmp = new Node<T>(e);
             tmp.setPrev(tail);
             tail.setNext(tmp);
             tail = tail.getNext();
@@ -31,12 +31,12 @@ public class LinkedList implements StorageCapable {
     }
 
     public void delete(int index) throws IndexOutOfBoundsException {
-        Node tmp = head;
+        Node<T> tmp = head;
         for (int i = 0; i < index; ++i) {
             tmp = tmp.getNext();
         }
-        Node prev = tmp.getPrev();
-        Node next = tmp.getNext();
+        Node<T> prev = tmp.getPrev();
+        Node<T> next = tmp.getNext();
         if (next != null) {
             next.setPrev(prev);
         }
@@ -49,31 +49,31 @@ public class LinkedList implements StorageCapable {
         size--;
     }
 
-    public Integer pop() {
+    public T pop() {
         if (size == 0) {
             return null;
         }
         tail.getPrev().setNext(null);
-        Integer tmp = tail.getValue();
+        T tmp = tail.getValue();
         tail = tail.getPrev();
         size--;
         return tmp;
     }
 
-    public Integer get(int index) throws IndexOutOfBoundsException {
+    public T get(int index) throws IndexOutOfBoundsException {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
-        Node tmp = head;
+        Node<T> tmp = head;
         for (int i = 0; i < index; ++i) {
             tmp = tmp.getNext();
         }
         return tmp.getValue();
     }
 
-    public int findFirst(Integer e) {
+    public int findFirst(T e) {
         int tmpInd = -1;
-        Node tmp = head;
+        Node<T> tmp = head;
         for (int i = 0; i < size; ++i) {
             if (tmp.getValue().equals(e)) {
                 return i;
@@ -83,7 +83,7 @@ public class LinkedList implements StorageCapable {
         return tmpInd;
     }
 
-    public void deleteAll(Integer e) {
+    public void deleteAll(T e) {
         for (int i = 0; i < size; ++i) {
             if (this.get(i).equals(e)) {
                 this.delete(i);

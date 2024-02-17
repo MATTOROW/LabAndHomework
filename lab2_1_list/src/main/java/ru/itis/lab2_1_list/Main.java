@@ -22,18 +22,24 @@ public class Main {
 //        b.delete(1);
 //        System.out.println(b.get(1));
 //        System.out.println("_____________________________________________");
+//
+//        List<Integer> c = new List<Integer>(new Integer[] {1, 2, 3, 2, 3, 1, 1});
+//        System.out.println(c.findFirst(Integer.valueOf(23)));
+//        c.deleteAll(Integer.valueOf(1));
+//        System.out.println(c.size());
+//        System.out.println(c.get(0));
+//        System.out.println("_______________________________________________");
 
-        List c = new List(new Integer[] {1, 2, 3, 2, 3, 1, 1});
-        System.out.println(c.findFirst(Integer.valueOf(23)));
-        c.deleteAll(Integer.valueOf(1));
-        System.out.println(c.size());
-        System.out.println(c.get(0));
-        System.out.println("_______________________________________________");
-
-        LinkedList d = new LinkedList(new Integer[] {1, 2, 3, 4, 5, 1, 6, 1, 1, 2, 3, 2});
+        LinkedList<Integer> d = new LinkedList<Integer>(new Integer[] {1, 2, 3, 4, 5, 1, 6, 1, 1, 2, 3, 2});
         System.out.println(d.findFirst(Integer.valueOf(6)));
         d.deleteAll(Integer.valueOf(1));
         System.out.println(d.size());
         System.out.println(d.get(5));
+        System.out.println("_________________________________________________");
+
+        LinkedList<String> a = new LinkedList<String>(new String[]{"A", "B"});
+        System.out.println(a.get(0));
+        System.out.println(a.get(1));
+
     }
 }

@@ -1,30 +1,30 @@
 package ru.itis.lab2_1_list;
 
-public class List implements StorageCapable {
+public class List<T> implements StorageCapable<T> {
     private int size = 0;
     private int capacity = 2;
-    private Integer[] massive = new Integer[capacity];
+    private Object[] massive = new Object[capacity];
 
     public List() {
     }
 
     public List(int size) {
-        massive = new Integer[size];
+        massive = new Object[size];
         capacity = size + 10;
     }
 
-    public List(Integer[] massive) {
+    public List(T[] massive) {
         this.massive = massive;
         size = massive.length;
         capacity = massive.length * 2;
     }
 
-    public void add(Integer e) throws EmptyElementException {
+    public void add(T e) throws EmptyElementException {
         if (e == null) {
             throw new EmptyElementException();
         }
         if (size == capacity) {
-            Integer[] tmp = new Integer[capacity * 2];
+            Object[] tmp = new Object[capacity * 2];
             System.arraycopy(massive, 0, tmp, 0, size);
             massive = tmp;
             capacity *= 2;
@@ -43,22 +43,22 @@ public class List implements StorageCapable {
         size--;
     }
 
-    public Integer pop() {
+    public T pop() {
         if (this.size == 0) {
             return null;
         }
         size--;
-        return massive[this.size];
+        return (T) massive[this.size];
     }
 
-    public Integer get(int index) throws IndexOutOfBoundsException {
+    public T get(int index) throws IndexOutOfBoundsException {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
-        return massive[index];
+        return (T) massive[index];
     }
 
-    public int findFirst(Integer e) {
+    public int findFirst(T e) {
         int tmpInd = -1;
         for (int i = 0; i < size; ++i) {
             if (massive[i].equals(e)) {
@@ -68,7 +68,7 @@ public class List implements StorageCapable {
         return tmpInd;
     }
 
-    public void deleteAll(Integer e) {
+    public void deleteAll(T e) {
         for (int i = 0; i < size; ++i) {
             if (massive[i].equals(e)) {
                 this.delete(i);

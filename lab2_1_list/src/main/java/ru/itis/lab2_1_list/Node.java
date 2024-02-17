@@ -1,22 +1,22 @@
 package ru.itis.lab2_1_list;
 
-public class Node {
-    private Integer value;
+public class Node<T> {
+    private T value;
     private Node next;
     private Node prev;
 
     public Node() {
     }
 
-    public Node(Integer value) {
+    public Node(T value) {
         this.value = value;
     }
 
-    public Integer getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
